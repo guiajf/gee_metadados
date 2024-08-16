@@ -1,40 +1,13 @@
----
-jupyter:
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
-  language_info:
-    codemirror_mode:
-      name: ipython
-      version: 3
-    file_extension: .py
-    mimetype: text/x-python
-    name: python
-    nbconvert_exporter: python
-    pygments_lexer: ipython3
-    version: 3.10.12
-  nbformat: 4
-  nbformat_minor: 5
----
-
-::: {#f842ba93-f137-4b90-a236-bc325122d610 .cell .markdown}
 # Propriedades das imagens geoespaciais
-:::
 
-::: {#0562570c-5e6f-4f77-95dc-33366972a7a1 .cell .markdown}
 ### Características das bandas
-:::
 
-::: {#d7b3c18d-093a-4abf-9a6c-4a4428e565d6 .cell .markdown}
 A página de desenvolvedor do **Google** fornece informações detalhadas
 sobre o catálogo *Harmonized Sentinel-2 MSI: MultiSpectral Instrument,
 Level-2A*, assim como os demais. A tabela de referência contendo
 informações sobre as bandas das imagens pode ser obtida no endereço
 <https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED#bands>.
-:::
 
-::: {#6098d509-93e0-493b-b00d-3a4c1bc81fbb .cell .code execution_count="86"}
 ``` python
 import requests
 from bs4 import BeautifulSoup
@@ -107,7 +80,6 @@ else:
     print("Erro ao acessar a página web:", response.status_code)
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -149,30 +121,19 @@ else:
     9    B9  0.0001  60 meters      945nm (S2A) / 943.2nm (S2B)  Water vapor
     10  B11  0.0001  20 meters  1613.7nm (S2A) / 1610.4nm (S2B)       SWIR 1
     11  B12  0.0001  20 meters  2202.4nm (S2A) / 2185.7nm (S2B)       SWIR 2
-:::
-:::
 
-::: {#2a72b10d-1e7c-4e39-ba65-5d7a976f72b6 .cell .markdown}
 ### Propriedades gerais
-:::
 
-::: {#5ebcafb6-0b5f-475b-b689-375adb09c504 .cell .markdown}
 Embora nem todas as características das bandas descritas na tabela de
 referência possam ser acessadas diretamente, diversas propriedades das
 imagens podem ser exibidas através de métodos fornecidos pelo **Google
 Earth Engine**, para extração dos metadados.
-:::
 
-::: {#a7f7bf45-0bbb-45bb-88b7-ce4bec5a4bc7 .cell .markdown}
 Para acesso ao catálogo de imagens geoespaciais do **Google Earth
 Engine**, repetimos os procedimentos descritos anteriormente
-:::
 
-::: {#d6c889d0-b35e-4eac-915e-638b1e20c625 .cell .markdown}
 ### Importamos as bibliotecas
-:::
 
-::: {#88137d5a-7f55-49d6-b61a-5c9dd6067db8 .cell .code execution_count="87"}
 ``` python
 import ee
 import geemap
@@ -182,7 +143,6 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -208,14 +168,9 @@ from matplotlib.patches import Polygon
             </style>
             
 ```
-:::
-:::
 
-::: {#fce744bb-597e-4aa0-9258-58abab4f9d8f .cell .markdown}
 ### Inicializamos a API
-:::
 
-::: {#90303401-8359-4c8e-a566-769185415112 .cell .code execution_count="88"}
 ``` python
 # Processo de autenticação
 ee.Authenticate()
@@ -224,7 +179,6 @@ ee.Authenticate()
 ee.Initialize()
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -250,24 +204,16 @@ ee.Initialize()
             </style>
             
 ```
-:::
-:::
 
-::: {#1ba6ac6a-0002-48a4-9999-7a5ce70a46ba .cell .markdown}
 ### Definição de parâmetros
-:::
 
-::: {#8e3b8e9f-94bd-4d60-a242-0f8bd15a39fe .cell .markdown}
 *Intervalo temporal*
-:::
 
-::: {#f7a3afdc-c959-462a-bc55-da3f30959276 .cell .code execution_count="89"}
 ``` python
 data_inicial = '2024-04-01'
 data_final = '2024-07-31'
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -293,14 +239,9 @@ data_final = '2024-07-31'
             </style>
             
 ```
-:::
-:::
 
-::: {#1d11e81c-daea-407b-9259-d62ae2359f78 .cell .markdown}
 *Área de interesse*
-:::
 
-::: {#3b09a50a-78c9-48e7-87a3-0177e014b086 .cell .code execution_count="90"}
 ``` python
 polygon_coords = [
     [-43.41287287680422, -21.756108688468274],
@@ -313,7 +254,6 @@ polygon_coords = [
 aoi = ee.Geometry.Polygon(polygon_coords, None, False)
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -339,25 +279,17 @@ aoi = ee.Geometry.Polygon(polygon_coords, None, False)
             </style>
             
 ```
-:::
-:::
 
-::: {#2e2ef316-6ac3-4fbc-83f8-b844b6433dcf .cell .markdown}
 ### Escolha da coleção de imagens
-:::
 
-::: {#9e0fe117-a1ce-4f6e-9f58-33690e6c8e9d .cell .markdown}
 Aplicamos os filtros de acordo com os parâmetros:
-:::
 
-::: {#619325af-2cdb-4e69-98db-baa391028a7d .cell .code execution_count="91"}
 ``` python
 db = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
                 .filterBounds(aoi) \
                 .filterDate(ee.Date(data_inicial), ee.Date(data_final)) 
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -383,20 +315,14 @@ db = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
             </style>
             
 ```
-:::
-:::
 
-::: {#e6d0f02c-ed25-4f4a-8341-f26b3b85caed .cell .markdown}
 ### Contagem das imagens disponíveis
-:::
 
-::: {#aadf0d69-b743-467c-b202-df0a7f8f8565 .cell .code execution_count="92"}
 ``` python
 dbCount = db.size()
 print('Quantidade: ', str(dbCount.getInfo())+'\n')
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -422,23 +348,15 @@ print('Quantidade: ', str(dbCount.getInfo())+'\n')
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Quantidade:  48
-:::
-:::
 
-::: {#2f57fbb5-0f57-490b-a30e-da2f2c219091 .cell .markdown}
 ### Extraímos a imagem com menor cobertura de nuvens
-:::
 
-::: {#615f8a71-7783-4e56-8e10-52008acd7fcd .cell .code execution_count="93"}
 ``` python
 db = ee.Image(db.sort('CLOUDY_PIXEL_PERCENTAGE').first())
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -464,14 +382,9 @@ db = ee.Image(db.sort('CLOUDY_PIXEL_PERCENTAGE').first())
             </style>
             
 ```
-:::
-:::
 
-::: {#db2aff93-6bc9-47a4-a354-6cc0f098f4c0 .cell .markdown}
 ### Contagem das bandas disponíveis
-:::
 
-::: {#7961bd3f-1361-4c91-9dad-c2b2e4eab25c .cell .code execution_count="95"}
 ``` python
 # Obtém os nomes das bandas
 band_names = db.bandNames()
@@ -483,7 +396,6 @@ number_of_bands = band_names.size().getInfo()
 print(f'Número de bandas: {number_of_bands}')
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -509,18 +421,11 @@ print(f'Número de bandas: {number_of_bands}')
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Número de bandas: 26
-:::
-:::
 
-::: {#1afdba6c-b13a-45b2-a9b0-3a4a6691614e .cell .markdown}
 ### Bandas que iniciam com a letra \'B\'
-:::
 
-::: {#cd8deac2-5294-4b59-b738-552d97bbca73 .cell .code execution_count="96"}
 ``` python
 # Leitura das bandas, que começam com "B"
 db_bands = db.select('[B].*')
@@ -535,7 +440,6 @@ for i in range(len(db_band_info['bands'])):
     print(db_band_info['bands'][i]['id'])
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -561,9 +465,7 @@ for i in range(len(db_band_info['bands'])):
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Bandas:
 
     B1
@@ -578,19 +480,13 @@ for i in range(len(db_band_info['bands'])):
     B9
     B11
     B12
-:::
-:::
 
-::: {#35ab841b-0c6e-4ea6-a954-a5ecaa309298 .cell .markdown}
 ### Extraímos as propriedades das bandas selecionadas
-:::
 
-::: {#e2958888-1a83-469a-bfa4-4cfe0d8625d3 .cell .code execution_count="120"}
 ``` python
 db_bands.getInfo()['bands']
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -616,9 +512,7 @@ db_bands.getInfo()['bands']
             </style>
             
 ```
-:::
 
-::: {.output .execute_result execution_count="120"}
     [{'id': 'B1',
       'data_type': {'type': 'PixelType',
        'precision': 'int',
@@ -715,24 +609,16 @@ db_bands.getInfo()['bands']
       'dimensions': [5490, 5490],
       'crs': 'EPSG:32723',
       'crs_transform': [20, 0, 600000, 0, -20, 7700020]}]
-:::
-:::
 
-::: {#bf2c5816-0a3e-4606-bd11-b75fc20701d4 .cell .markdown}
 ## Metadados
-:::
 
-::: {#1620031f-e192-4789-98e4-87bb6ad70bbd .cell .markdown}
 Para obter os metadados no **Google Earth Engine**, chamamos o método
 *getInfo* no objeto *Image* criado.
-:::
 
-::: {#4f76010a-ebb3-471f-87a9-5fe89c08152e .cell .code execution_count="97"}
 ``` python
 db_info = db.getInfo()
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -758,21 +644,15 @@ db_info = db.getInfo()
             </style>
             
 ```
-:::
-:::
 
-::: {#d96f3cd3-6127-4f5d-9c07-b06d939f8280 .cell .markdown}
 ## Listamos o dicionário de metadados associados à imagem
-:::
 
-::: {#654f008c-d569-4992-bfe5-e319f52a3342 .cell .code execution_count="98"}
 ``` python
 print("Fields of Image Info:")
 for key in db_info:
     print(key)
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -798,23 +678,16 @@ for key in db_info:
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Fields of Image Info:
     type
     bands
     version
     id
     properties
-:::
-:::
 
-::: {#768a0523-6cfe-4c4b-9027-182cfb2ab587 .cell .markdown}
 ### Listamos as propriedades da imagem
-:::
 
-::: {#0a98a790-c8ff-4cb5-9909-e29e658bfe65 .cell .code execution_count="99"}
 ``` python
 properties = db_info.get('properties', {})
 
@@ -825,7 +698,6 @@ for i, (key, value) in enumerate(properties.items()):
     print(f"{key}: {value}")
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -851,9 +723,7 @@ for i, (key, value) in enumerate(properties.items()):
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Principais propriedades da imagem:
     SPACECRAFT_NAME: Sentinel-2A
     SATURATED_DEFECTIVE_PIXEL_PERCENTAGE: 0
@@ -956,14 +826,9 @@ for i, (key, value) in enumerate(properties.items()):
     SOLAR_IRRADIANCE_B4: 1512.06
     SOLAR_IRRADIANCE_B3: 1823.24
     WATER_PERCENTAGE: 0.137989
-:::
-:::
 
-::: {#a106eb8a-1c9e-4e42-98f0-d1389fef6908 .cell .markdown}
 ### Acessamos uma propriedade específica
-:::
 
-::: {#30dc77d4-3747-4a4b-a567-50965a400fcd .cell .code execution_count="100"}
 ``` python
 # Acessar as propriedades da imagem
 properties = db_info.get('properties', {})
@@ -975,7 +840,6 @@ cloud_shadow_percentage = properties.get('CLOUD_SHADOW_PERCENTAGE')
 print(f"PERCENTUAL DE NUVENS: {cloud_shadow_percentage}")
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -1001,18 +865,11 @@ print(f"PERCENTUAL DE NUVENS: {cloud_shadow_percentage}")
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     PERCENTUAL DE NUVENS: 0.00995
-:::
-:::
 
-::: {#382fa85e-8fa3-4a21-a36c-de15ab96db4f .cell .markdown}
 ### Listamos a escala das bandas iniciadas com a letra \'B\'
-:::
 
-::: {#f1a90316-b7b2-4663-80c0-a899bf944f92 .cell .code execution_count="122"}
 ``` python
 # Obter a lista de bandas
 band_names = db.bandNames().getInfo()
@@ -1023,7 +880,6 @@ for band in band_names:
         print(f'Banda {band} Escala: {scale.getInfo()} metros')
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -1049,9 +905,7 @@ for band in band_names:
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Banda B1 Escala: 60 metros
     Banda B2 Escala: 10 metros
     Banda B3 Escala: 10 metros
@@ -1064,14 +918,9 @@ for band in band_names:
     Banda B9 Escala: 60 metros
     Banda B11 Escala: 20 metros
     Banda B12 Escala: 20 metros
-:::
-:::
 
-::: {#127770c8-7844-4fd0-8854-7abc0dc163af .cell .markdown}
 ### Escala x tamanho do pixel
-:::
 
-::: {#6e4e7ef3-2197-4ac7-aa3b-12e6b8dcfbe8 .cell .markdown}
 A escala nominal e o tamanho do *pixel* estão relacionados, mas não são
 exatamente a mesma coisa. A escala nominal refere-se à resolução
 espacial da banda em termos de tamanho de *pixel* no solo, mas é
@@ -1085,9 +934,7 @@ regulares como **UTM (Universal Transverse Mercator)**, sistema de
 coordenadas geográficas que divide o mundo em uma série de zonas
 longitudinais e projeta a superfície terrestre em um plano 2D,
 utilizando a projeção cilíndrica transversal de *Mercator*.
-:::
 
-::: {#968cb648-b4eb-401c-8118-f913f4f38ebb .cell .code execution_count="102"}
 ``` python
 # Iterar sobre as bandas que começam com 'B' e obter suas características
 for band in band_names:
@@ -1097,7 +944,6 @@ for band in band_names:
         print(f'Banda: {band}, Escala: {scale} metros, Tamanho do Pixel: {pixel_size} metros')
 ```
 
-::: {.output .display_data}
 ```{=html}
 
             <style>
@@ -1123,9 +969,7 @@ for band in band_names:
             </style>
             
 ```
-:::
 
-::: {.output .stream .stdout}
     Banda: B1, Escala: 60 metros, Tamanho do Pixel: 60 metros
     Banda: B2, Escala: 10 metros, Tamanho do Pixel: 10 metros
     Banda: B3, Escala: 10 metros, Tamanho do Pixel: 10 metros
@@ -1138,5 +982,3 @@ for band in band_names:
     Banda: B9, Escala: 60 metros, Tamanho do Pixel: 60 metros
     Banda: B11, Escala: 20 metros, Tamanho do Pixel: 20 metros
     Banda: B12, Escala: 20 metros, Tamanho do Pixel: 20 metros
-:::
-:::
