@@ -80,34 +80,6 @@ else:
     print("Erro ao acessar a página web:", response.status_code)
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
-:::
-
-::: {.output .stream .stdout}
        Name   Scale Pixel Size                       Wavelength  Description
     0    B1  0.0001  60 meters    443.9nm (S2A) / 442.3nm (S2B)     Aerosols
     1    B2  0.0001  10 meters    496.6nm (S2A) / 492.1nm (S2B)         Blue
