@@ -115,32 +115,6 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
-
 ### Inicializamos a API
 
 ``` python
@@ -151,31 +125,6 @@ ee.Authenticate()
 ee.Initialize()
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
 
 ### Definição de parâmetros
 
@@ -184,32 +133,6 @@ ee.Initialize()
 ``` python
 data_inicial = '2024-04-01'
 data_final = '2024-07-31'
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
 *Área de interesse*
@@ -226,32 +149,6 @@ polygon_coords = [
 aoi = ee.Geometry.Polygon(polygon_coords, None, False)
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
-
 ### Escolha da coleção de imagens
 
 Aplicamos os filtros de acordo com os parâmetros:
@@ -262,31 +159,6 @@ db = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
                 .filterDate(ee.Date(data_inicial), ee.Date(data_final)) 
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
 
 ### Contagem das imagens disponíveis
 
@@ -295,64 +167,12 @@ dbCount = db.size()
 print('Quantidade: ', str(dbCount.getInfo())+'\n')
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
-
     Quantidade:  48
 
 ### Extraímos a imagem com menor cobertura de nuvens
 
 ``` python
 db = ee.Image(db.sort('CLOUDY_PIXEL_PERCENTAGE').first())
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
 ### Contagem das bandas disponíveis
@@ -366,32 +186,6 @@ number_of_bands = band_names.size().getInfo()
 
 # Imprime o número de bandas
 print(f'Número de bandas: {number_of_bands}')
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
     Número de bandas: 26
@@ -410,32 +204,6 @@ type(db_band_info)
 print('Bandas:\n')
 for i in range(len(db_band_info['bands'])):
     print(db_band_info['bands'][i]['id'])
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
     Bandas:
@@ -457,32 +225,6 @@ for i in range(len(db_band_info['bands'])):
 
 ``` python
 db_bands.getInfo()['bands']
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
     [{'id': 'B1',
@@ -591,31 +333,7 @@ Para obter os metadados no **Google Earth Engine**, chamamos o método
 db_info = db.getInfo()
 ```
 
-```{=html}
 
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
 
 ## Listamos o dicionário de metadados associados à imagem
 
@@ -623,32 +341,6 @@ db_info = db.getInfo()
 print("Fields of Image Info:")
 for key in db_info:
     print(key)
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
     Fields of Image Info:
@@ -670,31 +362,7 @@ for i, (key, value) in enumerate(properties.items()):
     print(f"{key}: {value}")
 ```
 
-```{=html}
 
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
 
     Principais propriedades da imagem:
     SPACECRAFT_NAME: Sentinel-2A
@@ -812,32 +480,6 @@ cloud_shadow_percentage = properties.get('CLOUD_SHADOW_PERCENTAGE')
 print(f"PERCENTUAL DE NUVENS: {cloud_shadow_percentage}")
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
-
     PERCENTUAL DE NUVENS: 0.00995
 
 ### Listamos a escala das bandas iniciadas com a letra \'B\'
@@ -852,31 +494,6 @@ for band in band_names:
         print(f'Banda {band} Escala: {scale.getInfo()} metros')
 ```
 
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
-```
 
     Banda B1 Escala: 60 metros
     Banda B2 Escala: 10 metros
@@ -914,32 +531,6 @@ for band in band_names:
         scale = db.select(band).projection().nominalScale().getInfo()
         pixel_size = db.select(band).projection().getInfo()['transform'][0]
         print(f'Banda: {band}, Escala: {scale} metros, Tamanho do Pixel: {pixel_size} metros')
-```
-
-```{=html}
-
-            <style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-            
 ```
 
     Banda: B1, Escala: 60 metros, Tamanho do Pixel: 60 metros
