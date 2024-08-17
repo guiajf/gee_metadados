@@ -338,12 +338,12 @@ db_info = db.getInfo()
 ## Listamos o dicionário de metadados associados à imagem
 
 ``` python
-print("Fields of Image Info:")
+print("Informações disponíveis:")
 for key in db_info:
     print(key)
 ```
 
-    Fields of Image Info:
+    Informações disponíveis:
     type
     bands
     version
