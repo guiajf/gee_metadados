@@ -104,11 +104,10 @@ Earth Engine**, para extração dos metadados.
 Para acesso ao catálogo de imagens geoespaciais do **Google Earth
 Engine**, repetimos os procedimentos descritos anteriormente
 
-### Importamos as bibliotecas
+### Importamos a biblioteca
 
 ``` python
 import ee
-import geemap
 ```
 
 ### Inicializamos a API
