@@ -109,10 +109,6 @@ Engine**, repetimos os procedimentos descritos anteriormente
 ``` python
 import ee
 import geemap
-import rasterio
-from rasterio.plot import show
-import matplotlib.pyplot as plt
-from matplotlib.patches import Polygon
 ```
 
 ### Inicializamos a API
